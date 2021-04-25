@@ -1,18 +1,33 @@
-import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
-import maPhoto from "./moi.jpg"
-import Photo from "./components/Profile/ProfilePhoto";
-import Name from "./components/Profile/FullName";
-import Address from "./components/Profile/Address";
-
+import "antd/dist/antd.css";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Popular from "./components/Popular";
+import Top from "./components/Top";
+import Details from "./components/Details";
 function App() {
-
   return (
-    <div>
-        <Photo data={maPhoto}/>
-        <Name />
-        <Address />      
-    </div>
+    <Router>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Popular</Link>
+          </li>
+          <li>
+            <Link to="/top">Top</Link>
+          </li>
+        </ul>
+      </nav>
+      <Switch>
+        <Route exact path="/">
+          <Popular />
+        </Route>
+        <Route exact path="/top">
+          <Top />
+        </Route>
+        <Route exact path="/details/:id">
+          <Details />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
